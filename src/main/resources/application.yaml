@@ -1,1 +1,23 @@
-spring.application.name=SmartDeltaTest
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/${spring.data.mongodb.database}?authSource=admin
+      username: admin
+      password: mongo
+      database: studentdb
+
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.url}/realms/${keycloak.realm}
+
+keycloak:
+  url: http://localhost:9091/auth
+  realm: nyos
+  client-id: administration-client
+  client-secret: 3HrOTkr3fIWuTi5sYDcVuEe9Da5WB67F
