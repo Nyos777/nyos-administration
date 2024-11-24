@@ -1,5 +1,6 @@
 package org.example.smartdeltatest.AOP;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,13 @@ public class LoggingAspect {
 
   // Логируем до выполнения метода
   @Before("serviceMethods()")
-  public void logBefore() {
-    logger.info("Method is about to be called");
+  public void logBefore(JoinPoint joinPoint) {
+    logger.info("Method = ({}()) to be called", joinPoint.getSignature().getName());
   }
 
   @AfterReturning(pointcut = "serviceMethods()", returning = "result")
-  public void logAfterReturning(Object result) {
-    logger.info("Method executed successfully, result: {}", result);
+  public void logAfterReturning(JoinPoint joinPoint, Object result) {
+    logger.info("Method = ({}()) executed successfully, result: {}", joinPoint.getSignature().getName(), result);
   }
 
   @AfterThrowing(pointcut = "serviceMethods()", throwing = "exception")

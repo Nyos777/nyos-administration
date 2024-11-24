@@ -32,7 +32,7 @@ public class StudentService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No students found");
       }
       return students.stream()
-              .map(studentMapper::studentToStudentDTO) // Преобразуем сущности в DTO
+              .map(studentMapper::studentToStudentDTO)
               .collect(Collectors.toList());
     } catch (Exception e) {
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error fetching students", e);
@@ -41,9 +41,9 @@ public class StudentService {
 
   public StudentDTO saveStudent(StudentDTO studentDTO) {
     try {
-      Student student = studentMapper.studentDTOToStudent(studentDTO);  // Преобразуем DTO в сущность
+      Student student = studentMapper.studentDTOToStudent(studentDTO);
       Student savedStudent = repository.save(student);
-      return studentMapper.studentToStudentDTO(savedStudent);  // Возвращаем DTO
+      return studentMapper.studentToStudentDTO(savedStudent);
     } catch (Exception e) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error saving student", e);
     }
@@ -54,10 +54,10 @@ public class StudentService {
       if (!repository.existsById(id)) {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
       }
-      Student student = studentMapper.studentDTOToStudent(studentDTO);  // Преобразуем DTO в сущность
+      Student student = studentMapper.studentDTOToStudent(studentDTO);
       student.setId(id);
       Student updatedStudent = repository.save(student);
-      return studentMapper.studentToStudentDTO(updatedStudent);  // Возвращаем DTO
+      return studentMapper.studentToStudentDTO(updatedStudent);
     } catch (Exception e) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error updating student", e);
     }

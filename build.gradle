@@ -21,17 +21,23 @@ ext {
     lombokVersion = '1.18.36'
     mapstructVersion = '1.6.3'
     junitVersion = '5.11.3'
+    keycloakVersion = '26.0.3'
+    securityVersion = '6.4.1'
 }
 
 dependencies {
     // Spring Boot
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.boot:spring-boot-starter-aop"
 
     // Security
     implementation "org.springframework.boot:spring-boot-starter-security"
-    implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+    implementation "org.springframework.security:spring-security-oauth2-resource-server"
+    implementation "org.springframework.security:spring-security-oauth2-jose"
+    implementation "org.springframework.security:spring-security-config"
+
+    //Keycloak
+    implementation "org.keycloak:keycloak-admin-client:${keycloakVersion}"
 
     // MongoDB
     implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
