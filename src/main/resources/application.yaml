@@ -17,7 +17,10 @@ spring:
           issuer-uri: ${keycloak.url}/realms/${keycloak.realm}
 
 keycloak:
-  url: http://localhost:9091/auth
+  url: http://localhost:9090/auth
   realm: nyos
   client-id: administration-client
-  client-secret: 3HrOTkr3fIWuTi5sYDcVuEe9Da5WB67F
+  client-secret: oJIeP6uXtECc5t0xnBk1BJQDfqZnS1tJ
+  username: nyos
+  password: admin
+  grant-type: password
